@@ -7,6 +7,44 @@ const FooterContainer = styled.div`
   width: 100%;
   background-color: #181818;
   color: white;
+
+  display: flex;
+  justify-content: space-between;
 `;
 
-export { FooterContainer };
+const FooterLeft = styled.div`
+  width: 30%;
+  display: flex;
+  align-items: center;
+  max-width: 300px;
+
+  & img {
+    height: 60px;
+    width: 60px;
+    margin-right: 20px;
+    object-fit: contain;
+  }
+`;
+
+const FooterCenter = styled.div`
+  width: 40%;
+  max-width: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const FooterRight = styled.div`
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 35px;
+
+  & .MuiSlider-root {
+    color: #00ff00;
+  }
+`;
+
+export { FooterContainer, FooterLeft, FooterCenter, FooterRight };
