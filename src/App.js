@@ -5,11 +5,11 @@ import Player from "./components/Player";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectToken,
-  SET_TOKEN,
+  selectUser,
   SET_USER,
   SET_PLAYLIST,
   SET_TRACKS,
+  SET_TRACKSORIGINAL,
 } from "./features/userSlice";
 
 import { getTokenFromURL } from "./spotifyLogin";
@@ -19,7 +19,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,7 +30,6 @@ function App() {
     spotify.setAccessToken(tokenURL);
     spotify.getMe().then((user) => {
       dispatch(SET_USER(user));
-      dispatch(SET_TOKEN(tokenURL));
 
       //Obtenemos los playlist
       spotify.getUserPlaylists().then((res) => {
@@ -47,13 +46,16 @@ function App() {
             }
           )
             .then((res) => res.json())
-            .then((tracks) => dispatch(SET_TRACKS(tracks)));
+            .then((tracks) => {
+              dispatch(SET_TRACKS(tracks.items));
+              dispatch(SET_TRACKSORIGINAL(tracks.items));
+            });
         }
       });
     });
   }, [dispatch]);
 
-  return <div className="app">{token ? <Player /> : <Login />}</div>;
+  return <div className="app">{user ? <Player /> : <Login />}</div>;
 }
 
 export default App;

@@ -10,7 +10,6 @@ import { Favorite, MoreHoriz, PlayCircleFilled } from "@mui/icons-material";
 const Body = () => {
   const playlist = useSelector(selectPlaylist);
   const tracks = useSelector(selectTracks);
-
   console.log(tracks);
 
   return (
@@ -31,9 +30,11 @@ const Body = () => {
           <Favorite fontSize="large" />
           <MoreHoriz />
         </Icons>
-        {tracks?.items.map((item, index) => (
-          <SongRow track={item.track} key={index} />
-        ))}
+
+        {tracks &&
+          tracks.map((item, index) => (
+            <SongRow track={item.track} key={index} />
+          ))}
       </Songs>
     </BodyContainer>
   );

@@ -46,11 +46,12 @@ const Icons = styled.div`
   }
 
   & .playButton {
-    margin: 20px 0 20px 50px;
-    /* transition: transform 2; */
+    margin: 20px 15px 20px 50px;
+    transition: transform 200ms ease-in-out;
   }
 
   & .playButton:hover {
+    cursor: pointer;
     transform: scale(1.1);
   }
 `;
@@ -59,6 +60,7 @@ const SongRowContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: 25px;
+  margin-top: 15px;
   z-index: 90;
   color: white;
 
@@ -75,7 +77,14 @@ const SongRowContainer = styled.div`
   }
 `;
 
-const SongInfo = styled.div``;
+const SongInfo = styled.div`
+  margin-left: 20px;
+
+  & p {
+    margin-top: 3px;
+    color: lightgray;
+  }
+`;
 
 export {
   BodyContainer,
