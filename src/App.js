@@ -1,17 +1,57 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import Login from "./components/Login";
 import Player from "./components/Player";
 
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectToken,
+  SET_TOKEN,
+  SET_USER,
+  SET_PLAYLIST,
+  SET_TRACKS,
+} from "./features/userSlice";
+
 import { getTokenFromURL } from "./spotifyLogin";
 
+import SpotifyWebApi from "spotify-web-api-js";
+
+const spotify = new SpotifyWebApi();
+
 function App() {
-  const [token, setToken] = useState(null);
+  const token = useSelector(selectToken);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setToken(getTokenFromURL());
-    window.location.hash = "";
-  }, []);
+    const tokenURL = getTokenFromURL();
+
+    if (tokenURL === null) return;
+
+    spotify.setAccessToken(tokenURL);
+    spotify.getMe().then((user) => {
+      dispatch(SET_USER(user));
+      dispatch(SET_TOKEN(tokenURL));
+
+      //Obtenemos los playlist
+      spotify.getUserPlaylists().then((res) => {
+        if (res.items.length !== 0) {
+          dispatch(SET_PLAYLIST(res.items[0]));
+
+          //Obtenemos los tracks
+          fetch(
+            "https://api.spotify.com/v1/playlists/6fPoRfgvK0GQb6pzVc7iSC/tracks",
+            {
+              headers: {
+                Authorization: `Bearer ${tokenURL}`,
+              },
+            }
+          )
+            .then((res) => res.json())
+            .then((tracks) => dispatch(SET_TRACKS(tracks)));
+        }
+      });
+    });
+  }, [dispatch]);
 
   return <div className="app">{token ? <Player /> : <Login />}</div>;
 }

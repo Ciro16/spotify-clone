@@ -33,6 +33,23 @@ const FooterCenter = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  & .shuffle,
+  .repeat {
+    color: #00ff00;
+    transition: transform 300ms ease-in-out;
+  }
+
+  & .icon {
+    transition: transform 300ms ease-in-out;
+  }
+
+  & .shuffle:hover,
+  .repeat:hover,
+  .icon:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+  }
 `;
 
 const FooterRight = styled.div`

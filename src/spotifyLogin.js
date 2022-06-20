@@ -1,4 +1,4 @@
-const endpoint = `https://accounts.spotify.com/authorize?`;
+const loginEndpoint = `https://accounts.spotify.com/authorize?`;
 const clientID = "ecdd12bdcb9748aca2e98e41ba2f2df1";
 const redirectURI = "http://localhost:3000/";
 const scopes = [
@@ -9,7 +9,7 @@ const scopes = [
   "user-modify-playback-state",
 ];
 
-const loginURL = `${endpoint}client_id=${clientID}&response_type=token&redirect_uri=${redirectURI}&scope=${scopes.join(
+const loginURL = `${loginEndpoint}client_id=${clientID}&response_type=token&redirect_uri=${redirectURI}&scope=${scopes.join(
   "%20"
 )}&show_dialog=true`;
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 `;
 
 const HeaderLeft = styled.div`
