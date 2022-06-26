@@ -21,6 +21,10 @@ const HeaderLeft = styled.div`
     border: none;
     width: 100%;
   }
+
+  & input:focus {
+    outline: none;
+  }
 `;
 
 const HeaderRight = styled.div`
@@ -29,6 +33,11 @@ const HeaderRight = styled.div`
 
   & h4 {
     margin-left: 15px;
+  }
+
+  & .avatar {
+    width: 50px;
+    height: 50px;
   }
 `;
 

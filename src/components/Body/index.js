@@ -10,7 +10,6 @@ import { Favorite, MoreHoriz, PlayCircleFilled } from "@mui/icons-material";
 const Body = () => {
   const playlist = useSelector(selectPlaylist);
   const tracks = useSelector(selectTracks);
-  console.log(tracks);
 
   return (
     <BodyContainer>

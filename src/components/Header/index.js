@@ -43,7 +43,7 @@ const Header = () => {
       </HeaderLeft>
 
       <HeaderRight>
-        <Avatar src={user?.images[0]?.url} />
+        <Avatar src={user?.images[0]?.url} className="avatar" />
         <h4>Ciroperez</h4>
       </HeaderRight>
     </HeaderContainer>

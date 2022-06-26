@@ -19,7 +19,7 @@ const Info = styled.div`
   padding: 10px;
 
   & img {
-    width: 20vw;
+    width: 15vw;
     margin: 0 20px;
     box-shadow: 0 4px 60px black;
   }
