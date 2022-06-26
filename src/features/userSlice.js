@@ -7,7 +7,7 @@ export const userSlice = createSlice({
     user: null,
     playlist: null,
     tracks: null,
-    tracksOriginal: null,
+    searchTrack: "",
   },
   reducers: {
     SET_TOKEN: (state, action) => {
@@ -22,8 +22,8 @@ export const userSlice = createSlice({
     SET_TRACKS: (state, action) => {
       state.tracks = action.payload;
     },
-    SET_TRACKSORIGINAL: (state, action) => {
-      state.tracksOriginal = action.payload;
+    SET_SEARCH_TRACK: (state, action) => {
+      state.searchTrack = action.payload;
     },
   },
 });
@@ -33,12 +33,12 @@ export const {
   SET_TOKEN,
   SET_PLAYLIST,
   SET_TRACKS,
-  SET_TRACKSORIGINAL,
+  SET_SEARCH_TRACK,
 } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectPlaylist = (state) => state.user.playlist;
 export const selectTracks = (state) => state.user.tracks;
-export const selectTracksOriginal = (state) => state.user.tracksOriginal;
+export const selectSearchTrack = (state) => state.user.searchTrack;
 
 export default userSlice.reducer;

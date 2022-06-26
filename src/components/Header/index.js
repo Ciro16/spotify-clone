@@ -1,11 +1,6 @@
 import { HeaderContainer, HeaderLeft, HeaderRight } from "./styles";
 
-import {
-  selectUser,
-  selectTracks,
-  selectTracksOriginal,
-  SET_TRACKS,
-} from "../../features/userSlice";
+import { selectUser, SET_SEARCH_TRACK } from "../../features/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -13,22 +8,11 @@ import { Avatar } from "@mui/material";
 
 const Header = () => {
   const user = useSelector(selectUser);
-  const tracks = useSelector(selectTracks);
-  const tracksOriginal = useSelector(selectTracksOriginal);
 
   const dispatch = useDispatch();
 
   const handelChange = (e) => {
-    if (e.target.value === "") {
-      dispatch(SET_TRACKS(tracksOriginal));
-      return;
-    }
-
-    const filterTracks = tracks.filter(
-      (item) => item.track.name.search(e.target.value) !== -1
-    );
-
-    dispatch(SET_TRACKS(filterTracks));
+    dispatch(SET_SEARCH_TRACK(e.target.value));
   };
 
   return (
@@ -44,7 +28,7 @@ const Header = () => {
 
       <HeaderRight>
         <Avatar src={user?.images[0]?.url} className="avatar" />
-        <h4>Ciroperez</h4>
+        <h4>{user?.display_name}</h4>
       </HeaderRight>
     </HeaderContainer>
   );

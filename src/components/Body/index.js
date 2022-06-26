@@ -1,6 +1,10 @@
 import { BodyContainer, Icons, Info, InfoText, Songs } from "./styles";
 
-import { selectPlaylist, selectTracks } from "../../features/userSlice";
+import {
+  selectPlaylist,
+  selectSearchTrack,
+  selectTracks,
+} from "../../features/userSlice";
 import { useSelector } from "react-redux";
 
 import Header from "../Header";
@@ -10,6 +14,7 @@ import { Favorite, MoreHoriz, PlayCircleFilled } from "@mui/icons-material";
 const Body = () => {
   const playlist = useSelector(selectPlaylist);
   const tracks = useSelector(selectTracks);
+  const searchTrack = useSelector(selectSearchTrack);
 
   return (
     <BodyContainer>
@@ -31,9 +36,14 @@ const Body = () => {
         </Icons>
 
         {tracks &&
-          tracks.map((item, index) => (
-            <SongRow track={item.track} key={index} />
-          ))}
+          tracks.map((item, index) => {
+            if (
+              item.track.name.toLowerCase().includes(searchTrack.toLowerCase())
+            ) {
+              return <SongRow track={item.track} key={index} />;
+            }
+            return "";
+          })}
       </Songs>
     </BodyContainer>
   );

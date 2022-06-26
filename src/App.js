@@ -9,7 +9,6 @@ import {
   SET_USER,
   SET_PLAYLIST,
   SET_TRACKS,
-  SET_TRACKSORIGINAL,
 } from "./features/userSlice";
 
 import { getTokenFromURL } from "./spotifyLogin";
@@ -48,7 +47,6 @@ function App() {
             .then((res) => res.json())
             .then((tracks) => {
               dispatch(SET_TRACKS(tracks.items));
-              dispatch(SET_TRACKSORIGINAL(tracks.items));
             });
         }
       });
