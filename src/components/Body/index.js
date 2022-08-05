@@ -36,14 +36,11 @@ const Body = () => {
         </Icons>
 
         {tracks &&
-          tracks.map((item, index) => {
-            if (
+          tracks
+            .filter((item) =>
               item.track.name.toLowerCase().includes(searchTrack.toLowerCase())
-            ) {
-              return <SongRow track={item.track} key={index} />;
-            }
-            return "";
-          })}
+            )
+            .map((item, index) => <SongRow track={item.track} key={index} />)}
       </Songs>
     </BodyContainer>
   );
